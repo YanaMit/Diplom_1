@@ -137,10 +137,14 @@ public class BurgerTests {
                 Mockito.when(ingredient.getType()).thenReturn(ingredientType);
                 Mockito.when(ingredient.getName()).thenReturn(ingredientName);
                 float sumPrice = burger.getPrice();
-                String expected = "(==== булочка ====)\n" + String.format("= %s %s =\n",
-                        ingredientType.toString().toLowerCase(), ingredientName).repeat(numOfIngredients)
-                        +"(==== булочка ====)\n"+
-                        "\n"+ String.format("Price: %f", sumPrice)+"\n";
+
+                String expected = String.join("","(==== булочка ====)\n",
+                        String.format("= %s %s =\n",
+                        ingredientType.toString().toLowerCase(), ingredientName).repeat(numOfIngredients),
+                        "(==== булочка ====)\n",
+                        "\n", String.format("Price: %f", sumPrice),"\n");
+
+
                 Assert.assertEquals(burger.getReceipt(), expected);
         }
 
